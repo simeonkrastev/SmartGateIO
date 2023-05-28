@@ -1,0 +1,1 @@
+﻿const apiAddress = "http://[Your API address here!]:5003";
