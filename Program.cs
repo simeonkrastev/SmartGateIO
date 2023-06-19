@@ -17,7 +17,6 @@ namespace SmartGateIO
 			builder.Services.AddEndpointsApiExplorer();
 			builder.Services.AddSwaggerGen();
 
-			// Create an instance of the application
 			WebApplication app = builder.Build();
 
 			// Configurations for Swagger.
@@ -30,13 +29,11 @@ namespace SmartGateIO
 			// Configure the web server to provide the HTML/CSS/JS files
 			app.UseDefaultFiles();
 			app.UseStaticFiles();
+
 			app.UseAuthorization();
+
 			app.MapControllers();
 
-			// Other configuration and startup code to be put here.
-			// ...
-
-			// Start the application
 			app.Run();
 		}
 	}

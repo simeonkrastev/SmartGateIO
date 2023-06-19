@@ -15,8 +15,6 @@ namespace SmartGateIO.Controllers
 			_context = context;
 		}
 
-		// This async method returns Task<ActionResult<...>> so that it can be
-		// run simultaneously while the server processes other requests.
 		[HttpPost]
 		public async Task<IActionResult> ReceiveRfidData([FromBody]string body)
 		{

@@ -1,1 +1,1 @@
-﻿const apiAddress = "http://192.168.43.27:5003";
+﻿const apiAddress = "http://[Your API address here!]:5003";

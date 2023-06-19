@@ -4,20 +4,20 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-        "applicationUrl": "http://192.168.43.27:1814",
-        "sslPort": 0
+      "applicationUrl": "http://[Your API address here!]:1814",
+      "sslPort": 0
     }
   },
   "profiles": {
     "SmartGateIO": {
-        "commandName": "Project",
-        "dotnetRunMessages": true,
-        "launchBrowser": true,
-        "launchUrl": "", // By defaut launches the index.html at root
-        "applicationUrl": "http://192.168.43.27:5003",
-        "environmentVariables": {
-            "ASPNETCORE_ENVIRONMENT": "Development"
-        }
+      "commandName": "Project",
+      "dotnetRunMessages": true,
+      "launchBrowser": true,
+      "launchUrl": "", // By defaut launches the index.html at root
+      "applicationUrl": "http://[Your API address here!]:5003",
+      "environmentVariables": {
+        "ASPNETCORE_ENVIRONMENT": "Development"
+      }
     },
     "IIS Express": {
       "commandName": "IISExpress",
