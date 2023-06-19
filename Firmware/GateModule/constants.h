@@ -1,4 +1,4 @@
-const char* ssid = "[Your WiFi here]";
-const char* password = "[Your WiFi password here]";
+const char* ssid = "DevHotspot";
+const char* password = "MrSimoDevices";
 
-String serverName = "http://[Your web API address here]:5003/api/checkin/";
+String serverName = "http://192.168.43.27:5003/api/checkin/";

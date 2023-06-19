@@ -9,14 +9,17 @@
 #define SS_PIN D4
 #define RST_PIN D3
 
+// Create a global variable for the RFID module
 MFRC522 rfid(SS_PIN, RST_PIN);
 MFRC522::MIFARE_Key key;
 
+// Used to track the duration of each frame of the loop method
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;
 
 void setup() {
   // Connect to the USB cable
+  // the Serial class is used to print debug data to the Arduino IDE monitor.
   Serial.begin(115200);
   Serial.println("Serial ready!");
 

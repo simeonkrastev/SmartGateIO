@@ -15,6 +15,8 @@ namespace SmartGateIO.Controllers
 			_context = context;
 		}
 
+		// This async method returns Task<ActionResult<...>> so that it can be
+		// run simultaneously while the server processes other requests.
 		[HttpGet]
 		public async Task<ActionResult<List<CheckinData>>> GetCheckinsData()
 		{
