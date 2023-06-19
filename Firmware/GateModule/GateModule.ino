@@ -32,7 +32,7 @@ void setup() {
     delay(500);
     Serial.print(".");
   }
-  Serial.println("");
+  Serial.println("Hardware ready!");
   Serial.print("Connected to WiFi network with IP Address: ");
   Serial.println(WiFi.localIP());
 }
