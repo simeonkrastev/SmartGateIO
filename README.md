@@ -5,7 +5,7 @@ Prototype multitier solution, managing chip card access through a gate.
 # Steps to launch the solution for development and debugging:
 1. Connect the Hardware
  - Connect the NodeMCU module to your PC.
- - Use the following wiring (TODO: Add link) to connect the RFID sensor.
+ - Use the following wiring https://miliohm.com/rc522-rfid-reader-with-nodemcu/
 
 2. Configure for your local network
  - On the server machine use ipconfig command to find your local IP.
