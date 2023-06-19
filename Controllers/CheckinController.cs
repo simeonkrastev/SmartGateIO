@@ -20,6 +20,8 @@ namespace SmartGateIO.Controllers
 		{
 			int tag = int.Parse(body);
 			Console.WriteLine("POST request on api/checkin. RFID tag: " + tag);
+			Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
+			
 
 			CheckinData checkinData = new CheckinData
 			{
