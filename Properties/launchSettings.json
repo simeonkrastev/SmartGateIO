@@ -4,7 +4,7 @@
     "windowsAuthentication": false,
     "anonymousAuthentication": true,
     "iisExpress": {
-      "applicationUrl": "http://192.168.190.69:1814",
+      "applicationUrl": "http://[Your API address here!]:1814",
       "sslPort": 0
     }
   },
@@ -14,7 +14,7 @@
       "dotnetRunMessages": true,
       "launchBrowser": true,
       "launchUrl": "", // By defaut launches the index.html at root
-      "applicationUrl": "http://192.168.190.69:5003",
+      "applicationUrl": "http://[Your API address here!]:5003",
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
