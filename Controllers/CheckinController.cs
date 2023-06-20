@@ -20,6 +20,8 @@ namespace SmartGateIO.Controllers
 		{
 			int tag = int.Parse(body);
 			Console.WriteLine("POST request on api/checkin. RFID tag: " + tag);
+			Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
+			
 
 			CheckinData checkinData = new CheckinData
 			{
@@ -28,8 +30,15 @@ namespace SmartGateIO.Controllers
 			};
 
 			_context.AddCheckin(checkinData);
-
-			return StatusCode(200);
+			CheckinResponse responseBody = new CheckinResponse { Name = "Aleksander Krasmatsov", Validation = true, DateAndTime = DateTime.Now.ToString()};
+			return StatusCode(200, responseBody);
 		}
+	}
+
+	class CheckinResponse
+	{
+		public string? Name { get; set; }
+		public bool Validation { get; set; }
+		public string DateAndTime { get; set; }
 	}
 }

@@ -19,7 +19,8 @@ namespace SmartGateIO.Controllers
 		public async Task<ActionResult<List<CheckinData>>> GetCheckinsData()
 		{
 			Console.WriteLine("GET request on api/report");
-			return _context.GetCheckins();
+            Console.WriteLine("Client user IP address is " + HttpContext.Connection.RemoteIpAddress);
+            return _context.GetCheckins();
 		}
 	}
 }
