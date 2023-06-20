@@ -23,4 +23,22 @@ namespace SmartGateIO.Database
 			return Checkins.ToList();
 		}
 	}
+	class MockDataGenerator
+    {
+		public static void Seed(CheckinsDbContext context) 
+		{
+			CheckinData checkin1 = new CheckinData();
+			checkin1.ID= 1;
+			checkin1.RfidTag = 1151021376;
+			checkin1.Date = DateTime.Now.ToString();
+			context.AddCheckin(checkin1);
+
+            CheckinData checkin2 = new CheckinData();
+            checkin2.ID = 2;
+            checkin2.RfidTag = 888888888;
+            checkin2.Date = DateTime.Now.ToString();
+            context.AddCheckin(checkin2);
+			context.SaveChanges();
+        }
+	}
 }

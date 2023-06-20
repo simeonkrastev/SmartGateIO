@@ -33,6 +33,8 @@ namespace SmartGateIO
 			app.UseAuthorization();
 
 			app.MapControllers();
+            CheckinsDbContext context = app.Services.CreateScope().ServiceProvider.GetRequiredService<CheckinsDbContext>();
+			MockDataGenerator.Seed(context);
 
 			app.Run();
 		}
