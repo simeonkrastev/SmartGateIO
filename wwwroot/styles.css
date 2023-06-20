@@ -1,6 +1,7 @@
 ﻿body {
     font-size: 30px;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    padding-top: 100px;
 }
 
 /* The side navigation menu */
@@ -41,6 +42,40 @@ div.content {
     height: 1000px;
 }
 
+/* Header */
+.header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1px 20px;
+    position: fixed;
+    width: 100%;
+    background-color: #f1f1f1;
+    top: 0;
+    z-index: 100;
+}
+
+/* Logo and Name */
+.logo-name {
+    display: flex;
+    align-items: center;
+    height: 100px;
+}
+
+    .logo-name h1 {
+        margin-left: 10px;
+    }
+
+/* Login button */
+.login-button {
+    border: none;
+    padding: 10px 20px;
+    background-color: #04AA6D;
+    color: #fff;
+    cursor: pointer;
+    margin-right: 50px;
+}
+
 /* On screens that are less than 700px wide, make the sidebar into a topbar */
 @media screen and (max-width: 700px) {
     .sidebar {
@@ -58,7 +93,7 @@ div.content {
     }
 }
 
-/* On screens that are less than 400px, display the bar vertically, instead of horizontally*/
+/* On screens that are less than 400px, display the bar vertically, instead of horizontally */
 @media screen and (max-width: 400px) {
     .sidebar a {
         text-align: center;
