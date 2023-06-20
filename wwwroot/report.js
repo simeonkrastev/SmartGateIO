@@ -19,8 +19,6 @@
             //var listItem = document.createElement('li');
             //listItem.appendChild(textNode);
             //content.appendChild(listItem);
-            var reportTable = document.getElementById("reportTable");
-            if (tag.Value != reportTable.Value) {
                 var accountName = checkinData['rfidTag'];
                 var dataCheckin = checkinData['data'];
 
@@ -33,7 +31,6 @@
                 var secondItemResult = document.createElement('td');
                 secondItemResult.appendChild(secondItem);
                 content.appendChild(secondItemResult);
-            }
         })
     }
 }
