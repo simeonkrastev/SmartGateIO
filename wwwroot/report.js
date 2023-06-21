@@ -13,24 +13,31 @@
         var result = JSON.parse(request.response);
 
         result.forEach(checkinData => {
-            //var text = "Tag: " + checkinData['rfidTag'] + ", Date: " + checkinData['date'];
 
-            //var textNode = document.createTextNode(text);
-            //var listItem = document.createElement('li');
-            //listItem.appendChild(textNode);
-            //content.appendChild(listItem);
-                var accountName = checkinData['rfidTag'];
-                var dataCheckin = checkinData['data'];
+            var accountName = checkinData['rfidTag'];
+            var dateCheckin = checkinData['date'];
+            var tableBody = document.getElementById('tableBody');
+            var direction = "in";
 
-                var firstItem = document.createTextNode(accountName);
-                var firstItemResult = document.createElement('td');
-                firstItemResult.appendChild(firstItem);
-                content.appendChild(firstItemResult);
+            var newRow = document.createElement('tr');
 
-                var secondItem = document.createTextNode(dataCheckin);
-                var secondItemResult = document.createElement('td');
-                secondItemResult.appendChild(secondItem);
-                content.appendChild(secondItemResult);
+            var accountNameCell = document.createElement('td');
+            var accountNameText = document.createTextNode(accountName);
+            accountNameCell.appendChild(accountNameText);
+            newRow.appendChild(accountNameCell);
+
+            var dateCell = document.createElement('td');
+            var dateText = document.createTextNode(dateCheckin);
+            dateCell.appendChild(dateText);
+            newRow.appendChild(dateCell);
+
+            var directionCell = document.createElement('td');
+            var directionText = document.createTextNode(direction);
+            directionCell.appendChild(directionText);
+            newRow.appendChild(directionCell);
+
+            tableBody.appendChild(newRow);
+
         })
     }
 }
