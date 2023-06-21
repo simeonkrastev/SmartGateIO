@@ -36,6 +36,18 @@ namespace SmartGateIO.Database
         {
             return Accounts.ToList();
         }
+        public Account GetAccount(int id) 
+        {
+            foreach (Account account in Accounts) 
+            {
+                if (account.ID == id)
+                {
+                    return account;
+                }
+                
+            }
+            throw new KeyNotFoundException($"No user with Id:{id}!");
+        }
 
     }
 	class MockDataGenerator
