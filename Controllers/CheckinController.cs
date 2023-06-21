@@ -37,6 +37,14 @@ namespace SmartGateIO.Controllers
 				if (account.RfidTag == tag)
 				{
 					cardValid = true;
+					if (account.Status == "IN")
+					{
+						account.Status = "OUT";
+					}
+					else
+					{
+						account.Status = "IN";
+					}
 				}
 			}
 			CheckinResponse responseBody = new CheckinResponse { 
@@ -50,8 +58,8 @@ namespace SmartGateIO.Controllers
 
 	class CheckinResponse
 	{
-		public string? Name { get; set; }
+		public string Name { get; set; }
 		public bool Validation { get; set; }
-		public string? DateAndTime { get; set; }
+		public string DateAndTime { get; set; }
 	}
 }

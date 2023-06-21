@@ -54,17 +54,25 @@ namespace SmartGateIO.Database
             checkin2.Date = DateTime.Now.ToString();
             context.AddCheckin(checkin2);
 
+            CheckinData checkin3 = new CheckinData();
+            checkin3.ID = 3;
+            checkin3.RfidTag = 888888888;
+            checkin3.Date = DateTime.Now.ToString();
+            context.AddCheckin(checkin3);
+
             Account account1 = new Account();
             account1.ID = 1;
             account1.RfidTag = 1151021376;
             account1.Name = "Peter";
+            account1.Status = "IN";
             context.AddAccount(account1);
 
             Account account2 = new Account();
-            account1.ID = 2;
-            account1.RfidTag = 888888888;
-            account1.Name = "Ibrahim";
-            context.AddAccount(account1); 
+            account2.ID = 2;
+            account2.RfidTag = 888888888;
+            account2.Name = "Ibrahim";
+            account2.Status = "OUT";
+            context.AddAccount(account2); 
 
             context.SaveChanges();
 
