@@ -6,13 +6,14 @@ namespace SmartGateIO.Database
 	public class CheckinsDbContext : DbContext
 	{
 		public DbSet<CheckinData> Checkins { get; set; }
+		public DbSet<Account> Accounts { get; set; }
 
 		public CheckinsDbContext(DbContextOptions<CheckinsDbContext> options)
 			: base(options)
 		{
 		}
 
-		public void AddCheckin(CheckinData checkinData)
+        public void AddCheckin(CheckinData checkinData)
 		{
 			Checkins.Add(checkinData);
 			SaveChanges();
@@ -22,7 +23,21 @@ namespace SmartGateIO.Database
 		{
 			return Checkins.ToList();
 		}
-	}
+
+
+
+        public void AddAccount(Account account)
+        {
+            Accounts.Add(account);
+            SaveChanges();
+        }
+
+        public List<Account> GetAccounts()
+        {
+            return Accounts.ToList();
+        }
+
+    }
 	class MockDataGenerator
     {
 		public static void Seed(CheckinsDbContext context) 
@@ -38,7 +53,21 @@ namespace SmartGateIO.Database
             checkin2.RfidTag = 888888888;
             checkin2.Date = DateTime.Now.ToString();
             context.AddCheckin(checkin2);
-			context.SaveChanges();
+
+            Account account1 = new Account();
+            account1.ID = 1;
+            account1.RfidTag = 1151021376;
+            account1.Name = "Peter";
+            context.AddAccount(account1);
+
+            Account account2 = new Account();
+            account1.ID = 2;
+            account1.RfidTag = 888888888;
+            account1.Name = "Ibrahim";
+            context.AddAccount(account1); 
+
+            context.SaveChanges();
+
         }
 	}
 }
