@@ -30,7 +30,20 @@ namespace SmartGateIO.Controllers
 			};
 
 			_context.AddCheckin(checkinData);
-			CheckinResponse responseBody = new CheckinResponse { Name = "Aleksander Krasmatsov", Validation = true, DateAndTime = DateTime.Now.ToString()};
+			List<Account> accounts = _context.GetAccounts();
+			bool cardValid = false;
+			foreach (Account account in accounts)
+			{
+				if (account.RfidTag == tag)
+				{
+					cardValid = true;
+				}
+			}
+			CheckinResponse responseBody = new CheckinResponse { 
+				Name = "Aleksander Krasmatsov",
+				Validation = cardValid,
+				DateAndTime = DateTime.Now.ToString()
+			};
 			return StatusCode(200, responseBody);
 		}
 	}
@@ -39,6 +52,6 @@ namespace SmartGateIO.Controllers
 	{
 		public string? Name { get; set; }
 		public bool Validation { get; set; }
-		public string DateAndTime { get; set; }
+		public string? DateAndTime { get; set; }
 	}
 }
