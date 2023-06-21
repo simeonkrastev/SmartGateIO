@@ -16,8 +16,8 @@
 
             var accountName = checkinData['rfidTag'];
             var dateCheckin = checkinData['date'];
+            var direction = checkinData['status']; 
             var tableBody = document.getElementById('tableBody');
-            var direction = "in";
 
             var newRow = document.createElement('tr');
 
@@ -35,6 +35,14 @@
             var directionText = document.createTextNode(direction);
             directionCell.appendChild(directionText);
             newRow.appendChild(directionCell);
+
+            if (direction === "IN") {
+                directionCell.style.color = "green";
+            } else if (direction === "OUT") {
+                directionCell.style.color = "darkyellow";
+            } else {
+                directionCell.style.color = "red";
+            }
 
             tableBody.appendChild(newRow);
 
