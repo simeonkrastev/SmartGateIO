@@ -14,8 +14,23 @@ MFRC522::MIFARE_Key key;
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;
-
+int Led1 = 9;
+void SetLedPower(int ledPower){
+  if(ledPower == 0){
+    
+    digitalWrite(Led1, LOW);
+    
+  }
+  if(ledPower == 1){
+   analogWrite(Led1, 127);
+  }
+  if(ledPower == 2){
+   
+    digitalWrite(Led1,HIGH);
+  }
+}
 void setup() {
+  pinMode(Led1, OUTPUT);
   // Connect to the USB cable
   Serial.begin(115200);
   Serial.println("Serial ready!");
@@ -31,6 +46,7 @@ void setup() {
   while(WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
+  
   }
   
   Serial.print("Connected to WiFi network with IP Address: ");
@@ -39,47 +55,53 @@ void setup() {
 }
 
 void loop() {
-  if((millis() - lastTime) > timerDelay) { //Used to count 5 seconds between each request
-    if(WiFi.status() == WL_CONNECTED){
+  
+  SetLedPower(2)
+  // //if((millis() - lastTime) > timerDelay) { //Used to count 5 seconds between each request
+  //   //if(WiFi.status() == WL_CONNECTED){
+  //     //SetLedPower(0);
+  //     //if( ! rfid.PICC_IsNewCardPresent())
+  //      //SetLedPower(1);  // Check if a card is near the sensor.
+  //       //return; // If no card is close - do nothing.
 
-      if( ! rfid.PICC_IsNewCardPresent()) // Check if a card is near the sensor.
-        return; // If no card is close - do nothing.
+  //    // if( ! rfid.PICC_ReadCardSerial()) {  // Try to read the card.
+  //      // return;
+  //       //} // If card cannot be read - do nothing.
+  //     //else {
+  //       //SetLedPower(2);
+  //      //}
+  //     // From this point on the rfid variable stores the current card tag.
+  //     //Serial.print("Card read: ");
+  //     // Extract the tag from the rfid variable.
+  //     // String tag = "";
+  //     for(byte i = 0; i < 4; i++) {
+  //       tag += rfid.uid.uidByte[i];
+  //     }
+  //     Serial.println(tag);
 
-      if( ! rfid.PICC_ReadCardSerial())   // Try to read the card.
-        return; // If card cannot be read - do nothing.
+  //     // Init the http client to send the tag to the backend.
+  //     WiFiClient client;
+  //     HTTPClient http;
+  //     http.begin(client, serverName);
+  //     http.addHeader("Content-Type", "application/json");
 
-      // From this point on the rfid variable stores the current card tag.
-      Serial.print("Card read: ");
-      // Extract the tag from the rfid variable.
-      String tag = "";
-      for(byte i = 0; i < 4; i++) {
-        tag += rfid.uid.uidByte[i];
-      }
-      Serial.println(tag);
+  //     String requestBody = "\"" + tag + "\""; // The request body needs to be surrounded by quotes.
+  //     int responseCode = http.POST(requestBody);
 
-      // Init the http client to send the tag to the backend.
-      WiFiClient client;
-      HTTPClient http;
-      http.begin(client, serverName);
-      http.addHeader("Content-Type", "application/json");
+  //     if(responseCode > 0) {
+  //       Serial.print("HTTP Response code: ");
+  //       Serial.println(responseCode);
+  //     } else {
+  //       Serial.printf("HTTP error: %s\n", http.errorToString(responseCode).c_str());
+  //     }
 
-      String requestBody = "\"" + tag + "\""; // The request body needs to be surrounded by quotes.
-      int responseCode = http.POST(requestBody);
-
-      if(responseCode > 0) {
-        Serial.print("HTTP Response code: ");
-        Serial.println(responseCode);
-      } else {
-        Serial.printf("HTTP error: %s\n", http.errorToString(responseCode).c_str());
-      }
-
-      // Close the HTTP connection.
-      http.end();
-      // Reset the RFID sensor.
-      rfid.PICC_HaltA();
-      rfid.PCD_StopCrypto1();
-    }
-    lastTime = millis();
+  //     // Close the HTTP connection.
+  //     http.end();
+  //     // Reset the RFID sensor.
+  //     rfid.PICC_HaltA();
+  //     rfid.PCD_StopCrypto1();
+  //   }
+  //   lastTime = millis();
   }
 
 }
