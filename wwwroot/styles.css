@@ -146,3 +146,13 @@ div.content {
 #reportTable table, th, td {
     border: 2.5px solid black;
 }
+
+#input {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 2.5px solid #ddd;
+    margin-bottom: 12px;
+}
