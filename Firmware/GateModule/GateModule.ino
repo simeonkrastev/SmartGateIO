@@ -14,16 +14,37 @@ MFRC522::MIFARE_Key key;
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;
+int Led1 = D8;
 
+/*RGBCOLOUR CONST*/
+const int pins[] = { 5, 4, 0 };
+const int red_pin = 5;
+const int green_pin = 4;
+const int blue_pin = 0;
+
+void SetLedPower(int ledPower){
+  if(ledPower == 0){
+    
+    analogWrite(Led1, 0);
+    
+  }
+  if(ledPower == 1){
+   analogWrite(Led1, 19);
+   
+  }
+  if(ledPower == 2){
+   
+    analogWrite(Led1, 255);
+  
+  }
+}
 void setup() {
-  pinMode(Led1, OUTPUT);
-  // Connect to the USB cable
-  Serial.begin(115200);
-
   for (int pin : pins) {
     pinMode(pin, OUTPUT);
   }
-
+  pinMode(Led1, OUTPUT);
+  // Connect to the USB cable
+  Serial.begin(115200);
   Serial.println("Serial ready!");
 
   // Initialize the RFID sensor
@@ -57,7 +78,7 @@ void loop() {
 
       String tag = ReadTag();
 
-      SendRequest (tag)
+      SendRequest (tag);
       // Reset the RFID sensor.
       rfid.PICC_HaltA();
       rfid.PCD_StopCrypto1();
@@ -82,23 +103,48 @@ String ReadTag()
 void SendRequest(String tag)
 {
   // Init the http client to send the tag to the backend.
-      WiFiClient client;
-      HTTPClient http;
-      http.begin(client, serverName);
-      http.addHeader("Content-Type", "application/json");
+  WiFiClient client;
+  HTTPClient http;
+  http.begin(client, serverName);
+  http.addHeader("Content-Type", "application/json");
 
-      String requestBody = "\"" + tag + "\""; // The request body needs to be surrounded by quotes.
-      int responseCode = http.POST(requestBody);
+  String requestBody = "\"" + tag + "\""; // The request body needs to be surrounded by quotes.
+  int responseCode = http.POST(requestBody);
+  Serial.print(http.getString());
+  if(responseCode > 0) {
+    Serial.print("HTTP Response code: ");
+    Serial.println(responseCode);
+  } else {
+    Serial.printf("HTTP error: %s\n", http.errorToString(responseCode).c_str());
+  }
+  
+  // Close the HTTP connection.
+  http.end();
+    
+}
+void rgbColor(String color)
+{
 
-      if(responseCode > 0) {
-        Serial.print("HTTP Response code: ");
-        Serial.println(responseCode);
-      } else {
-        Serial.printf("HTTP error: %s\n", http.errorToString(responseCode).c_str());
-      }
+  if(color == "red"){
+    digitalWrite(red_pin, HIGH);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(green_pin, LOW);
+  } 
+  else if (color == "green")
+  {
+    digitalWrite(red_pin, LOW);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(green_pin, HIGH);
+  }
 
-      // Close the HTTP connection.
-      http.end();
+  else if (color == "off")
+  {
+    digitalWrite(green_pin, LOW);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(red_pin, LOW);
+
+  }
 }
 
-}
+
+
