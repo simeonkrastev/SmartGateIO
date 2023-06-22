@@ -17,11 +17,21 @@ namespace SmartGateIO.Controllers
 		}
 
 		[HttpGet]
-		public async Task<ActionResult<List<CheckinData>>> GetCheckinsData()
+		public async Task<ActionResult<List<CheckinWebResponse>>> GetCheckinWebResponse()
 		{
+
 			Console.WriteLine("GET request on api/report");
             Console.WriteLine("Client user IP address is " + HttpContext.Connection.RemoteIpAddress);
-            return _context.GetCheckins();
+			List<CheckinWebResponse> result = new List<CheckinWebResponse>();
+			foreach (CheckinData data in _context.GetCheckins())
+			{
+                CheckinWebResponse response = new CheckinWebResponse();
+				response.ID = data.ID;
+				response.Name = _context.GetAccoountByTag(data.RfidTag).Name;
+				response.Date = DateTime.Now.ToString();
+				result.Add(response);
+            }
+            return result;
 		}
 
         [HttpGet("Id")]
@@ -39,6 +49,13 @@ namespace SmartGateIO.Controllers
 
             return result;
 
+        }
+
+        public class CheckinWebResponse
+		{
+            public int ID { get; set; }
+            public string Name { get; set; }
+            public string Date { get; set; }
         }
     }
 }

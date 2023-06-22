@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Azure;
+using Azure.Core;
+using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using SmartGateIO.Database;
 using SmartGateIO.Models;
 
@@ -16,12 +19,12 @@ namespace SmartGateIO.Controllers
 		}
 
 		[HttpPost]
-		public async Task<IActionResult> ReceiveRfidData([FromBody]string body)
+		public async Task<IActionResult> ReceiveRfidData([FromBody] string body)
 		{
 			int tag = int.Parse(body);
 			Console.WriteLine("POST request on api/checkin. RFID tag: " + tag);
 			Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
-			
+
 
 			CheckinData checkinData = new CheckinData
 			{
@@ -47,16 +50,34 @@ namespace SmartGateIO.Controllers
 					}
 				}
 			}
-			CheckinResponse responseBody = new CheckinResponse { 
+			CheckinResponse responseBody = new CheckinResponse {
 				Name = "Aleksander Krasmatsov",
 				Validation = cardValid,
 				DateAndTime = DateTime.Now.ToString()
 			};
 			return StatusCode(200, responseBody);
 		}
-	}
+        [HttpGet("Id")]
+        public async Task<ActionResult<List<CheckinData>>> GetCheckinData(string Id)
+		{
+            Console.WriteLine("Get request on api/checkin. Id tag: " + Id);
+            Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
+            List<CheckinData> result = new List<CheckinData>();
+            Account account = _context.GetAccount(int.Parse(Id));
+            foreach (CheckinData checkin in _context.GetCheckins())
+            {
+				if (checkin.ID == account.ID)
+				{
+					result.Add(checkin);
+				}
+            }
+			return result; 
+        }
+    }
 
-	class CheckinResponse
+    
+
+    class CheckinResponse
 	{
 		public string Name { get; set; }
 		public bool Validation { get; set; }
