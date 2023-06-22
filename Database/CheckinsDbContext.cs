@@ -7,7 +7,7 @@ namespace SmartGateIO.Database
 	{
 		public DbSet<CheckinData> Checkins { get; set; }
 		public DbSet<Account> Accounts { get; set; }
-
+        
 		public CheckinsDbContext(DbContextOptions<CheckinsDbContext> options)
 			: base(options)
 		{
@@ -48,6 +48,18 @@ namespace SmartGateIO.Database
             }
             throw new KeyNotFoundException($"No user with Id:{id}!");
         }
+        public Account GetAccoountByTag(int tag)
+        {
+            foreach (Account account in Accounts)
+            {
+                if (account.RfidTag == tag)
+                {
+                    return account;
+                }
+            }
+            throw new KeyNotFoundException($"No user with tag:{tag}!");
+        }
+
 
     }
 	class MockDataGenerator
