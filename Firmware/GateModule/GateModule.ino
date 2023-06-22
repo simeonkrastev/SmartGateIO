@@ -15,9 +15,20 @@ MFRC522::MIFARE_Key key;
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;
 
+/*RGBCOLOUR CONST*/
+const int pins[] = { 5, 4, 0 };
+const int red_pin = 5;
+const int green_pin = 4;
+const int blue_pin = 0;
+
 void setup() {
   // Connect to the USB cable
   Serial.begin(115200);
+
+  for (int pin : pins) {
+    pinMode(pin, OUTPUT);
+  }
+
   Serial.println("Serial ready!");
 
   // Initialize the RFID sensor
@@ -83,3 +94,29 @@ void loop() {
   }
 
 }
+
+void rgbColour(String colour)
+{
+
+  if(colour == "red"){
+    digitalWrite(red_pin, HIGH);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(green_pin, LOW);
+  } 
+  else if (colour == "green")
+  {
+    digitalWrite(red_pin, LOW);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(green_pin, HIGH);
+  }
+
+  else if (colour == "off")
+  {
+    digitalWrite(green_pin, LOW);
+    digitalWrite(blue_pin, LOW);
+    digitalWrite(red_pin, LOW);
+
+  }
+}
+
+
