@@ -16,7 +16,7 @@
 
             //table
 
-            var accountName = checkinData['rfidTag'];
+            var accountName = checkinData['name'];
             var dateCheckin = checkinData['date'];
             var direction = checkinData['status']; 
             var tableBody = document.getElementById('tableBody');
