@@ -1,4 +1,5 @@
-﻿using Azure.Core;
+﻿using Azure;
+using Azure.Core;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using SmartGateIO.Database;
@@ -58,8 +59,10 @@ namespace SmartGateIO.Controllers
 		}
         [HttpGet("Id")]
         public async Task<ActionResult<List<CheckinData>>> GetCheckinData(string Id)
-        {
-			List<CheckinData> result = new List<CheckinData>();
+		{
+            Console.WriteLine("Get request on api/checkin. Id tag: " + Id);
+            Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
+            List<CheckinData> result = new List<CheckinData>();
             Account account = _context.GetAccount(int.Parse(Id));
             foreach (CheckinData checkin in _context.GetCheckins())
             {
