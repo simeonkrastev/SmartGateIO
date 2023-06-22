@@ -101,3 +101,58 @@ div.content {
         float: none;
     }
 }
+
+
+/* report Table*/
+
+#reportTable {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    min-width: 400px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.60);
+    width:100%;
+}
+
+    #reportTable thead tr {
+        background-color: #04AA6D;
+        color: #ffffff;
+        text-align: mid;
+    }
+
+#reportTable th,
+#reportTable td {
+    padding: 12px 15px;
+}
+
+#reportTable tbody tr {
+    border-bottom: 1px solid #dddddd;
+}
+
+    #reportTable tbody tr:nth-of-type(even) {
+        background-color: #DEDEDE;
+    }
+
+    #reportTable tbody tr:last-of-type {
+        border-bottom: 2px solid #009879;
+    }
+
+#reportTable tbody tr.active-row {
+    font-weight: bold;
+    color: #009879;
+}
+
+#reportTable table, th, td {
+    border: 2.5px solid black;
+}
+
+#input {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 100%;
+    font-size: 16px;
+    padding: 12px 20px 12px 40px;
+    border: 2.5px solid #ddd;
+    margin-bottom: 12px;
+}

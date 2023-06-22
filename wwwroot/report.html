@@ -26,13 +26,9 @@
     <div id="content" class="content">
         <strong>REPORT PAGE</strong>
         <br />
-        <style>
-            table, th, td {
-                border: 1px solid black;
-            }
-        </style>
         <br />
-        <table id="reportTable" style="width:100%">
+        <input type="text" id="input" onkeyup="filterTable()" placeholder="Search for account.." title="Type in a name">
+        <table id="reportTable">
             <thead>
             <th> Account Name </th>
             <th> Date of checkin </th>
