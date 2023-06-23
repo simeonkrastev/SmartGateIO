@@ -156,3 +156,18 @@ div.content {
     border: 2.5px solid #ddd;
     margin-bottom: 12px;
 }
+
+#names {
+    width: 200px;
+    height: 50px;
+    font-size: 30px;
+}
+
+.tables-container {
+    display: flex;
+    justify-content: space-between;
+}
+
+.table-container {
+    width: 45%;
+}
