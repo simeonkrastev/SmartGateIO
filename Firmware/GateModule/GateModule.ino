@@ -4,6 +4,7 @@
 #include <SPI.h>
 #include <MFRC522.h>
 #include "constants.h"
+#include <Arduino_JSON.h>
 
 // Represents how the jumper cabels are wired on the board.
 #define SS_PIN D4
@@ -14,6 +15,7 @@ MFRC522::MIFARE_Key key;
 
 unsigned long lastTime = 0;
 unsigned long timerDelay = 5000;
+
 int Led1 = D8;
 
 /*RGBCOLOUR CONST*/
@@ -43,6 +45,7 @@ void setup() {
     pinMode(pin, OUTPUT);
   }
   pinMode(Led1, OUTPUT);
+  
   // Connect to the USB cable
   Serial.begin(115200);
   Serial.println("Serial ready!");
@@ -77,8 +80,23 @@ void loop() {
         return; // If card cannot be read - do nothing.
 
       String tag = ReadTag();
+    
+      String response = SendRequest (tag);
+ 
+        JSONVar jsonResp = JSON.parse(response);
 
-      SendRequest (tag);
+        bool validation = jsonResp["validation"];
+        if(validation == true){
+          Serial.println("Card valid");
+         rgbColor("green");
+       }
+       else if( validation == false){
+         Serial.println("Card Invalid");
+          rgbColor("red");
+       }
+       else{
+         rgbColor("off");
+       }
       // Reset the RFID sensor.
       rfid.PICC_HaltA();
       rfid.PCD_StopCrypto1();
@@ -100,7 +118,7 @@ String ReadTag()
       return tag;
 }
 
-void SendRequest(String tag)
+String SendRequest(String tag)
 {
   // Init the http client to send the tag to the backend.
   WiFiClient client;
@@ -110,7 +128,7 @@ void SendRequest(String tag)
 
   String requestBody = "\"" + tag + "\""; // The request body needs to be surrounded by quotes.
   int responseCode = http.POST(requestBody);
-  Serial.print(http.getString());
+  Serial.println(http.getString());
   if(responseCode > 0) {
     Serial.print("HTTP Response code: ");
     Serial.println(responseCode);
@@ -120,7 +138,7 @@ void SendRequest(String tag)
   
   // Close the HTTP connection.
   http.end();
-    
+    return http.getString();
 }
 void rgbColor(String color)
 {
