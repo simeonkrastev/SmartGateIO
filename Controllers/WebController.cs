@@ -25,11 +25,25 @@ namespace SmartGateIO.Controllers
 			List<CheckinWebResponse> result = new List<CheckinWebResponse>();
 			foreach (CheckinData data in _context.GetCheckins())
 			{
-                CheckinWebResponse response = new CheckinWebResponse();
-				response.ID = data.ID;
-				response.Name = _context.GetAccoountByTag(data.RfidTag).Name;
-				response.Date = DateTime.Now.ToString();
-				result.Add(response);
+				try
+				{
+                    Account account = _context.GetAccoountByTag(data.RfidTag);
+
+                    CheckinWebResponse response = new CheckinWebResponse();
+                    response.ID = data.ID;
+                    response.Name = account.Name;
+                    response.Date = DateTime.Now.ToString();
+					response.ValidationStatus = true;
+                    result.Add(response);
+                }
+				catch (KeyNotFoundException)
+				{
+
+					CheckinWebResponse response = new CheckinWebResponse();
+					response.Date = DateTime.Now.ToString();
+					response.ValidationStatus = false;
+                    result.Add(response);
+                }
             }
             return result;
 		}
@@ -56,6 +70,8 @@ namespace SmartGateIO.Controllers
             public int ID { get; set; }
             public string Name { get; set; }
             public string Date { get; set; }
+			public bool ValidationStatus { get; set; }
+
         }
     }
 }
