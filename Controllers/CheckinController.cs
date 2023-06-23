@@ -32,7 +32,7 @@ namespace SmartGateIO.Controllers
 				Date = DateTime.Now.ToString()
 			};
 
-			_context.AddCheckin(checkinData);
+			
 			List<Account> accounts = _context.GetAccounts();
 			bool cardValid = false;
 			foreach (Account account in accounts)
@@ -43,14 +43,17 @@ namespace SmartGateIO.Controllers
 					if (account.Status == "IN")
 					{
 						account.Status = "OUT";
+						checkinData.Direction = "Going Out";
 					}
 					else
 					{
 						account.Status = "IN";
-					}
+                        checkinData.Direction = "Going In";
+                    }
 				}
 			}
-			CheckinResponse responseBody = new CheckinResponse {
+            _context.AddCheckin(checkinData);
+            CheckinResponse responseBody = new CheckinResponse {
 				Name = "Aleksander Krasmatsov",
 				Validation = cardValid,
 				DateAndTime = DateTime.Now.ToString()

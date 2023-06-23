@@ -34,6 +34,7 @@ namespace SmartGateIO.Controllers
                     response.Name = account.Name;
                     response.Date = DateTime.Now.ToString();
 					response.ValidationStatus = true;
+					response.Direction = data.Direction;
                     result.Add(response);
                 }
 				catch (KeyNotFoundException)
@@ -71,7 +72,7 @@ namespace SmartGateIO.Controllers
             public string Name { get; set; }
             public string Date { get; set; }
 			public bool ValidationStatus { get; set; }
-
+            public string Direction { get; set; }
         }
     }
 }

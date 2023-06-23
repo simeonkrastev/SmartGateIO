@@ -70,18 +70,21 @@ namespace SmartGateIO.Database
 			checkin1.ID= 1;
 			checkin1.RfidTag = 1151021376;
 			checkin1.Date = DateTime.Now.ToString();
+            checkin1.Direction = "Going In";
 			context.AddCheckin(checkin1);
 
             CheckinData checkin2 = new CheckinData();
             checkin2.ID = 2;
             checkin2.RfidTag = 888888888;
             checkin2.Date = DateTime.Now.ToString();
+            checkin2.Direction = "Going In";
             context.AddCheckin(checkin2);
 
             CheckinData checkin3 = new CheckinData();
             checkin3.ID = 3;
             checkin3.RfidTag = 888888888;
             checkin3.Date = DateTime.Now.ToString();
+            checkin3.Direction = "Going Out";
             context.AddCheckin(checkin3);
 
             Account account1 = new Account();
