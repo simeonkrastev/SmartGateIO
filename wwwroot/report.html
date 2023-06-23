@@ -11,8 +11,8 @@
     <div class="sidebar">
         <a id="home" href="index.html">Home</a>
         <a id="report" href="report.html" class="active">Report</a>
-        <a id="about" href="about.html">About</a>
         <a id="about" href="statistics.html">Statistics</a>
+        <a id="about" href="about.html">About</a>
     </div>
 
     <div class="header">
@@ -28,7 +28,17 @@
         <br />
         <br />
         <input type="text" id="input" onkeyup="filterTable()" placeholder="Search for account.." title="Type in a name">
-        <input type="date" id="dateInput"/>
+        <input type="date" id="dateInput">
+        <select id="directionFilter" onchange="filterTableDirection()">
+            <option value="">All</option>
+            <option value="Going In">Going In</option>
+            <option value="Going Out">Going Out</option>
+        </select>
+        <select id="validationFilter" onchange="filterTableValidation()">
+            <option value="">All</option>
+            <option value="Valid">Valid</option>
+            <option value="Not Valid">Not Valid</option>
+        </select>
         <table id="reportTable">
             <thead>
             <th> Account Name </th>

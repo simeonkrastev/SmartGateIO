@@ -150,9 +150,39 @@ div.content {
 #input {
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 29.007%;
+    width: 20%;
     font-size: 16px;
     padding: 12px 20px 12px 40px;
+    border: 2.5px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#dateInput {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 29.3%;
+    font-size: 16px;
+    padding: 10px 20px 11px 20px;
+    border: 2.5px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#directionFilter {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 15.8%;
+    font-size: 16px;
+    padding: 11px 10px 12px 10px;
+    border: 2.5px solid #ddd;
+    margin-bottom: 12px;
+}
+
+#validationFilter {
+    background-position: 10px 10px;
+    background-repeat: no-repeat;
+    width: 26.7%;
+    font-size: 16px;
+    padding: 11px 10px 12px 10px;
     border: 2.5px solid #ddd;
     margin-bottom: 12px;
 }
