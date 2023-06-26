@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>SmartGate.IO - Administration</title>
+    <link href="styles.css" rel="stylesheet" />
+    <script src="constants.js"></script>
+    <script src="administration.js"></script>
+</head>
+<body>
+    <div class="header">
+        <div class="logo-name">
+            <img src="logo1.png" style="width:2.5em; height:2.5em;" alt="Logo" class="logo">
+            <h1>SmartGate.IO</h1>
+        </div>
+        <button class="login-button">Login</button>
+    </div>
+
+    <div class="sidebar">
+        <a id="home" href="index.html">Home</a>
+        <a id="report" href="report.html">Report</a>
+        <a id="about" href="statistics.html">Statistics</a>
+        <a id="about" href="about.html">About</a>
+        <a id="administration" href="administration.html" class="active">Administration</a>
+    </div>
+
+    <div id="content" class="content">
+        <h4>Add New Account</h4>
+        <form id="add-account-form">
+            <div>
+                <label for="name" style="font-size:26px" >Account Name:</label>
+                <input type="text" id="name" name="name" placeholder="Write a valid account name.." required><br><br>
+
+                <label for="card-tag" style="font-size:26px" >Card Tag:</label>
+                <input type="text" id="card-tag" name="card-tag" placeholder="Write a valid card tag.." required><br><br>
+
+                <input type="submit" value="Add Account">
+            </div>
+        </form>
+
+        <h4>Delete Account</h4>
+        <form id="delete-account-form">
+            <div>
+                <label for="account-id" style="font-size:26px" >Account ID:</label>
+                <input type="text" id="account-id" name="account-id" required><br><br>
+
+                <input type="submit" value="Delete Account">
+            </div>
+        </form>
+</body>
+</html>

@@ -8,7 +8,7 @@
 .sidebar {
     margin: 0;
     padding: 0;
-    width: 200px;
+    width: 250px;
     background-color: #f1f1f1;
     position: fixed;
     height: 100%;
@@ -37,7 +37,7 @@
 
 
 div.content {
-    margin-left: 200px;
+    margin-left: 250px;
     padding: 1px 16px;
     height: 1000px;
 
@@ -160,7 +160,7 @@ div.content {
 #dateInput {
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 29.3%;
+    width: 25%;
     font-size: 16px;
     padding: 10px 20px 11px 20px;
     border: 2.5px solid #ddd;
@@ -170,7 +170,7 @@ div.content {
 #directionFilter {
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 15.8%;
+    width: 17%;
     font-size: 16px;
     padding: 11px 10px 12px 10px;
     border: 2.5px solid #ddd;
@@ -180,7 +180,7 @@ div.content {
 #validationFilter {
     background-position: 10px 10px;
     background-repeat: no-repeat;
-    width: 26.7%;
+    width: 25%;
     font-size: 16px;
     padding: 11px 10px 12px 10px;
     border: 2.5px solid #ddd;
@@ -201,3 +201,70 @@ div.content {
 .table-container {
     width: 45%;
 }
+
+/*form*/
+
+#add-account-form input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#add-account-form input[type=submit] {
+    width: 100%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #add-account-form input[type=submit]:hover {
+        background-color: #026641;
+    }
+
+#add-account-form div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
+/*delete account form*/
+
+#delete-account-form input[type=text], select {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+#delete-account-form input[type=submit] {
+    width: 100%;
+    background-color: #04AA6D;
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+    #delete-account-form input[type=submit]:hover {
+        background-color: #026641;
+    }
+
+#delete-account-form div {
+    border-radius: 5px;
+    background-color: #f2f2f2;
+    padding: 20px;
+}
+
