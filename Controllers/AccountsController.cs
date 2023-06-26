@@ -9,7 +9,7 @@ namespace SmartGateIO.Controllers
 {
     [ApiController]
     [Route("api/accounts")]
-    public class AccountsContoller
+    public class AccountsContoller : ControllerBase
     {
         private CheckinsDbContext _context;
 
@@ -25,6 +25,20 @@ namespace SmartGateIO.Controllers
         {
             return _context.GetAccounts();
             
+        }
+        [HttpDelete("Id")]
+        public async Task<ActionResult> DeleteAccounts(string Id)
+        {
+            Console.WriteLine("Trying to delete account with Id");
+            _context.DeleteAccount(int.Parse(Id));
+            return Ok();
+
+        }
+        [HttpPost]
+        public async Task<ActionResult<List<Account>>> AddAccounts()
+        {
+            return _context.GetAccounts();
+
         }
     }
 }

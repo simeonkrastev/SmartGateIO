@@ -1,4 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore;
+﻿using Azure;
+using Microsoft.EntityFrameworkCore;
 using SmartGateIO.Models;
 
 namespace SmartGateIO.Database
@@ -47,6 +48,25 @@ namespace SmartGateIO.Database
                 
             }
             throw new KeyNotFoundException($"No user with Id:{id}!");
+        }
+
+        public void DeleteAccount(int id)
+        {
+            Account account = GetAccountById(id);
+            Accounts.Remove(account);
+            SaveChanges();
+        }
+
+        public Account GetAccountById(int id)
+        {
+            foreach (Account account in Accounts)
+            {
+                if (account.ID == id)
+                {
+                    return account;
+                }
+            }
+            throw new Exception($"No user with Id:{id}!");
         }
         public Account GetAccoountByTag(int tag)
         {

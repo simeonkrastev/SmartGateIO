@@ -29,7 +29,8 @@ namespace SmartGateIO.Controllers
 			CheckinData checkinData = new CheckinData
 			{
 				RfidTag = tag,
-				Date = DateTime.Now.ToString()
+				Date = DateTime.Now.ToString(),
+				Direction = "Going In"
 			};
 
 			
@@ -52,6 +53,8 @@ namespace SmartGateIO.Controllers
                     }
 				}
 			}
+
+
             _context.AddCheckin(checkinData);
             CheckinResponse responseBody = new CheckinResponse {
 				Name = "Aleksander Krasmatsov",
