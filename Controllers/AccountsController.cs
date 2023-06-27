@@ -58,7 +58,7 @@ namespace SmartGateIO.Controllers
             Account account = new Account();
             account.Name = Name;
             account.RfidTag = cardTag;
-            account.Status = "Goung out";
+            account.Status = "OUT";
             _context.AddAccount(account);
             return Ok(); 
 
