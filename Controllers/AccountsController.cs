@@ -29,15 +29,22 @@ namespace SmartGateIO.Controllers
         [HttpDelete("Id")]
         public async Task<ActionResult> DeleteAccounts(string Id)
         {
-            Console.WriteLine("Trying to delete account with Id");
+            Console.WriteLine($"Trying to delete account with Id{Id}");
             _context.DeleteAccount(int.Parse(Id));
             return Ok();
 
         }
-        [HttpPost]
-        public async Task<ActionResult<List<Account>>> AddAccounts()
+        [HttpPost("{Name}/{cardTag}")]
+        public async Task<ActionResult<Account>> AddAccounts(string Name, int cardTag)
         {
-            return _context.GetAccounts();
+
+            Console.WriteLine($"Trying to add an account with name{Name} and card tag{cardTag}.");
+            Account account = new Account();
+            account.Name = Name;
+            account.RfidTag = cardTag;
+            account.Status = "Goung out";
+            _context.AddAccount(account);
+            return Ok(); 
 
         }
     }
