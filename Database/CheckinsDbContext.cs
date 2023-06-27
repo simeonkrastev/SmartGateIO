@@ -66,7 +66,7 @@ namespace SmartGateIO.Database
                     return account;
                 }
             }
-            throw new Exception($"No user with Id:{id}!");
+            throw new KeyNotFoundException($"No user with Id:{id}!");
         }
         public Account GetAccoountByTag(int tag)
         {
