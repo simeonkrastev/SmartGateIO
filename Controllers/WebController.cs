@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.ModelBinding;
 using SmartGateIO.Database;
 using SmartGateIO.Models;
 using System.Collections.Generic;
@@ -43,6 +44,8 @@ namespace SmartGateIO.Controllers
 					CheckinWebResponse response = new CheckinWebResponse();
 					response.Date = DateTime.Now.ToString();
 					response.ValidationStatus = false;
+					response.Direction = "Going In";
+					response.Name = "Not recognised";
                     result.Add(response);
                 }
             }

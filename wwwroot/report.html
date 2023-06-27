@@ -2,6 +2,9 @@
 <html>
 <head>
     <meta charset="utf-8" />
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
     <title>SmartGate.IO - Report</title>
     <link href="styles.css" rel="stylesheet" />
     <script src="constants.js"></script>
@@ -11,8 +14,9 @@
     <div class="sidebar">
         <a id="home" href="index.html">Home</a>
         <a id="report" href="report.html" class="active">Report</a>
-        <a id="about" href="about.html">About</a>
         <a id="about" href="statistics.html">Statistics</a>
+        <a id="about" href="about.html">About</a>
+        <a id="administration" href="administration.html">Administration</a>
     </div>
 
     <div class="header">
@@ -28,11 +32,23 @@
         <br />
         <br />
         <input type="text" id="input" onkeyup="filterTable()" placeholder="Search for account.." title="Type in a name">
+        <input type="date" id="dateInput">
+        <select id="directionFilter" onchange="filterTableDirection()">
+            <option value="">All</option>
+            <option value="Going In">Going In</option>
+            <option value="Going Out">Going Out</option>
+        </select>
+        <select id="validationFilter" onchange="filterTableValidation()">
+            <option value="">All</option>
+            <option value="Valid">Valid</option>
+            <option value="Not Valid">Not Valid</option>
+        </select>
         <table id="reportTable">
             <thead>
             <th> Account Name </th>
             <th> Date of checkin </th>
             <th> Direction </th>
+            <th> Validation Status </th>
             </thead>
             <tbody id="tableBody">
             </tbody>
