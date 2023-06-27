@@ -107,6 +107,34 @@ namespace SmartGateIO.Database
             checkin3.Direction = "Going Out";
             context.AddCheckin(checkin3);
 
+            CheckinData checkin4 = new CheckinData();
+            checkin4.ID = 4;
+            checkin4.RfidTag = 888888888;
+            checkin4.Date = DateTime.Now.ToString();
+            checkin4.Direction = "Going In";
+            context.AddCheckin(checkin4);
+
+            CheckinData checkin5 = new CheckinData();
+            checkin5.ID = 5;
+            checkin5.RfidTag = 888888888;
+            checkin5.Date = DateTime.Now.ToString();
+            checkin5.Direction = "Going Out";
+            context.AddCheckin(checkin5);
+
+            CheckinData checkin6 = new CheckinData();
+            checkin6.ID = 6;
+            checkin6.RfidTag = 888888888;
+            checkin6.Date = DateTime.Now.ToString();
+            checkin6.Direction = "Going In";
+            context.AddCheckin(checkin6);
+
+            CheckinData checkin7 = new CheckinData();
+            checkin7.ID = 7;
+            checkin7.RfidTag = 888888888;
+            checkin7.Date = DateTime.Now.ToString();
+            checkin7.Direction = "Going Out";
+            context.AddCheckin(checkin7);
+
             Account account1 = new Account();
             account1.ID = 1;
             account1.RfidTag = 1151021376;
