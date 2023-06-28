@@ -36,7 +36,7 @@ namespace SmartGateIO.Controllers
 
             }
             catch (KeyNotFoundException ex)
-            {
+            {  
                 string message = ex.Message;
                 return StatusCode(404, message);
             }
@@ -45,9 +45,17 @@ namespace SmartGateIO.Controllers
         [HttpDelete("Id")]
         public async Task<ActionResult> DeleteAccounts(string Id)
         {
-            Console.WriteLine($"Trying to delete account with Id{Id}");
-            _context.DeleteAccount(int.Parse(Id));
-            return Ok();
+            try
+            {
+                Console.WriteLine($"Trying to delete account with Id{Id}");
+                _context.DeleteAccount(int.Parse(Id));
+                return Ok();
+            }
+            catch (KeyNotFoundException ex)
+            {
+                string message = ex.Message;
+                return StatusCode(404, message);
+            }
 
         }
         [HttpPost("{Name}/{cardTag}")]
