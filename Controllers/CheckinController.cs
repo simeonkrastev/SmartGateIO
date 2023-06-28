@@ -25,7 +25,6 @@ namespace SmartGateIO.Controllers
 			Console.WriteLine("POST request on api/checkin. RFID tag: " + tag);
 			Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
 
-
 			CheckinData checkinData = new CheckinData
 			{
 				RfidTag = tag,
@@ -33,7 +32,6 @@ namespace SmartGateIO.Controllers
 				Direction = "Going In"
 			};
 
-			
 			List<Account> accounts = _context.GetAccounts();
 			bool cardValid = false;
 			foreach (Account account in accounts)
@@ -54,13 +52,13 @@ namespace SmartGateIO.Controllers
 				}
 			}
 
-
             _context.AddCheckin(checkinData);
-            CheckinResponse responseBody = new CheckinResponse {
+			CheckinResponse responseBody = new CheckinResponse {
 				Name = "Aleksander Krasmatsov",
 				Validation = cardValid,
-				DateAndTime = DateTime.Now.ToString()
-			};
+				DateAndTime = DateTime.Now.ToString(),
+				Direction = checkinData.Direction
+            };
 			return StatusCode(200, responseBody);
 		}
         [HttpGet("Id")]
@@ -88,5 +86,6 @@ namespace SmartGateIO.Controllers
 		public string Name { get; set; }
 		public bool Validation { get; set; }
 		public string DateAndTime { get; set; }
+		public string Direction { get; set; }
 	}
 }
