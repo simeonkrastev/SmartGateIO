@@ -66,16 +66,24 @@ namespace SmartGateIO.Controllers
 		{
             Console.WriteLine("Get request on api/checkin. Id tag: " + Id);
             Console.WriteLine(Request.HttpContext.Connection.RemoteIpAddress);
-            List<CheckinData> result = new List<CheckinData>();
-            Account account = _context.GetAccount(int.Parse(Id));
-            foreach (CheckinData checkin in _context.GetCheckins())
-            {
-				if (checkin.ID == account.ID)
+			try
+			{
+				List<CheckinData> result = new List<CheckinData>();
+				Account account = _context.GetAccount(int.Parse(Id));
+				foreach (CheckinData checkin in _context.GetCheckins())
 				{
-					result.Add(checkin);
+					if (checkin.ID == account.ID)
+					{
+						result.Add(checkin);
+					}
 				}
+				return result; 
+			}
+            catch (KeyNotFoundException ex)
+            {
+                string message = ex.Message;
+                return StatusCode(404, message);
             }
-			return result; 
         }
     }
 
