@@ -10,7 +10,7 @@ namespace SmartGateIO.Controllers
 	[Route("api/report")]
 	public class WebController : ControllerBase
 	{
-		private CheckinsDbContext _context;
+	 	private CheckinsDbContext _context;
 
 		public WebController(CheckinsDbContext context)
 		{
